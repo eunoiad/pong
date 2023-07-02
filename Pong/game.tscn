@@ -1,0 +1,183 @@
+[gd_scene load_steps=18 format=3 uid="uid://dvc3gy7fpolyk"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_a7sxo"]
+[ext_resource type="Script" path="res://Paddle/Paddle1.gd" id="1_dawrc"]
+[ext_resource type="Script" path="res://Paddle/Paddle2.gd" id="2_i3u46"]
+[ext_resource type="Script" path="res://Ball/Ball.gd" id="3_we5fy"]
+[ext_resource type="Texture2D" uid="uid://cq3j4lkv6o6ja" path="res://Ball/Player.svg" id="4_5saqt"]
+[ext_resource type="PackedScene" uid="uid://cylgfafpxpfh2" path="res://pause_menu.tscn" id="5_eijyq"]
+[ext_resource type="Script" path="res://GUI/Overlay.gd" id="6_d6sf2"]
+[ext_resource type="Script" path="res://Game/Player2Score.gd" id="7_0b40w"]
+[ext_resource type="Script" path="res://Game/Player1Score.gd" id="8_i0jig"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_iekhd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axp1y"]
+size = Vector2(20, 100)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2vu3c"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0yjh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8ani"]
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8etn"]
+size = Vector2(650, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ttmc4"]
+font_size = 150
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bc4l"]
+size = Vector2(20, 648)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_a7sxo")
+
+[node name="Paddle1" type="CharacterBody2D" parent="."]
+position = Vector2(50, 325)
+collision_mask = 2
+script = ExtResource("1_dawrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paddle1"]
+scale = Vector2(20, 100)
+texture = SubResource("CanvasTexture_iekhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle1"]
+shape = SubResource("RectangleShape2D_axp1y")
+
+[node name="Paddle2" type="CharacterBody2D" parent="."]
+position = Vector2(600, 325)
+collision_mask = 2
+script = ExtResource("2_i3u46")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paddle2"]
+scale = Vector2(20, 100)
+texture = SubResource("CanvasTexture_iekhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2"]
+shape = SubResource("RectangleShape2D_axp1y")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(325, 325)
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_2vu3c")
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("3_we5fy")
+initial_angle_max = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_f0yjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("4_5saqt")
+
+[node name="Scorer" type="Area2D" parent="Ball"]
+light_mask = 4
+visibility_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Scorer"]
+shape = SubResource("CircleShape2D_w8ani")
+
+[node name="Wall1" type="StaticBody2D" parent="."]
+position = Vector2(325, 0)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+shape = SubResource("RectangleShape2D_s8etn")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(325, 650)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource("RectangleShape2D_s8etn")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Overlay" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 648.0
+offset_bottom = 648.0
+script = ExtResource("6_d6sf2")
+
+[node name="Player 1" type="Label" parent="GUI/Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.094
+anchor_right = 0.12
+anchor_bottom = 0.094
+offset_left = 22.24
+offset_top = -15.912
+offset_right = 92.24
+offset_bottom = 10.088
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player 1: 0"
+
+[node name="Player 2" type="Label" parent="GUI/Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.094
+anchor_right = 0.12
+anchor_bottom = 0.094
+offset_left = 400.24
+offset_top = -15.912
+offset_right = 470.24
+offset_bottom = 10.088
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player 2: 0"
+
+[node name="Countdown" type="Label" parent="GUI/Overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -239.0
+offset_right = 42.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_ttmc4")
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("5_eijyq")]
+visible = false
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 649.0
+offset_bottom = 650.0
+
+[node name="Player2Score" type="Area2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(0, 324)
+script = ExtResource("7_0b40w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2Score"]
+shape = SubResource("RectangleShape2D_5bc4l")
+
+[node name="Player1Score" type="Area2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(648, 324)
+script = ExtResource("8_i0jig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1Score"]
+shape = SubResource("RectangleShape2D_5bc4l")
+
+[connection signal="start_round" from="." to="Ball" method="_on_game_start_round"]
+[connection signal="body_exited" from="Ball" to="Ball" method="_on_body_exited"]
+[connection signal="area_entered" from="Ball/Scorer" to="." method="_on_scorer_area_entered"]

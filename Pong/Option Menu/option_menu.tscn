@@ -1,0 +1,231 @@
+[gd_scene load_steps=4 format=3 uid="uid://baa0ca75w401t"]
+
+[ext_resource type="Script" path="res://Option Menu/option_menu.gd" id="1_7tfrh"]
+[ext_resource type="Script" path="res://Option Menu/Winning Score.gd" id="1_axxnb"]
+[ext_resource type="Script" path="res://Option Menu/Score Fade Time.gd" id="2_yge61"]
+
+[node name="Option_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7tfrh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.85098)
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 105.0
+offset_bottom = 31.0
+text = "Close"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 91.0
+offset_right = 244.0
+offset_bottom = 120.0
+grow_horizontal = 2
+
+[node name="Winning Score" type="HScrollBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 20.0
+step = 1.0
+value = 1.0
+script = ExtResource("1_axxnb")
+
+[node name="Label" type="Label" parent="HBoxContainer/Winning Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -9.5
+offset_top = -29.0
+offset_right = 61.5
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "12"
+
+[node name="Label2" type="Label" parent="HBoxContainer/Winning Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_top = 35.0
+offset_right = 46.0
+offset_bottom = 61.0
+grow_horizontal = 2
+text = "Score to win"
+
+[node name="HScrollBar3" type="HScrollBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 20.0
+step = 1.0
+value = 1.0
+
+[node name="Score Fade Time" type="HScrollBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 20.0
+step = 1.0
+value = 1.0
+script = ExtResource("2_yge61")
+
+[node name="Label" type="Label" parent="HBoxContainer/Score Fade Time"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -9.5
+offset_top = -29.0
+offset_right = 61.5
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "12"
+
+[node name="Label2" type="Label" parent="HBoxContainer/Score Fade Time"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_top = 35.0
+offset_right = 46.0
+offset_bottom = 61.0
+grow_horizontal = 2
+text = "Score Fade (s)"
+
+[node name="Player 1 Controls" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = -111.0
+offset_right = 183.0
+offset_bottom = -85.0
+grow_vertical = 2
+text = "Player 1 Controls"
+
+[node name="Player 2 Controls" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 469.0
+offset_top = -108.0
+offset_right = 605.0
+offset_bottom = -82.0
+grow_vertical = 2
+text = "Player 2 Controls"
+
+[node name="Up1" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 133.0
+offset_top = -45.0
+offset_right = 269.0
+offset_bottom = -19.0
+grow_vertical = 2
+text = "Up"
+
+[node name="Down1" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = 22.0
+offset_right = 270.0
+offset_bottom = 48.0
+grow_vertical = 2
+text = "Down"
+
+[node name="Player1InputMap" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 262.0
+offset_right = 118.0
+offset_bottom = 395.0
+
+[node name="Up" type="Button" parent="Player1InputMap"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "W"
+
+[node name="Down" type="Button" parent="Player1InputMap"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "S"
+
+[node name="Up2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 484.0
+offset_top = -41.0
+offset_right = 620.0
+offset_bottom = -15.0
+grow_vertical = 2
+text = "Up"
+
+[node name="Down2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 464.0
+offset_top = 26.0
+offset_right = 600.0
+offset_bottom = 52.0
+grow_vertical = 2
+text = "Down"
+
+[node name="Player2inputMap" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 262.0
+offset_right = 595.0
+offset_bottom = 395.0
+
+[node name="Up" type="Button" parent="Player2inputMap"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "W"
+
+[node name="Down" type="Button" parent="Player2inputMap"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "S"
+
+[connection signal="button_down" from="Close" to="." method="_on_close_button_down"]
+[connection signal="button_up" from="Player1InputMap/Up" to="." method="_player1_up"]
+[connection signal="button_up" from="Player1InputMap/Down" to="." method="_player1_down"]
+[connection signal="button_up" from="Player2inputMap/Up" to="." method="_player2_up"]
+[connection signal="button_up" from="Player2inputMap/Down" to="." method="_player2_down"]
